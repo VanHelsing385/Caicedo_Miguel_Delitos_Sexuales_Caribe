@@ -1,0 +1,9 @@
+# Análisis exploratorio y aplicación Streamlit
+pandas==3.1.1
+numpy==2.5.4
+streamlit==1.67.0
+plotly==7.1.0
+
+# Conexión y carga a PostgreSQL (opcional para ejecutar el EDA)
+psycopg==3.3.8
+python-dotenv==1.2.4

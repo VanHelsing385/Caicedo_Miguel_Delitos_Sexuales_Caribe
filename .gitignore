@@ -1,0 +1,61 @@
+
+# ==========================================
+# CREDENCIALES Y VARIABLES DE ENTORNO
+# ==========================================
+.env
+.env.*
+!.env.example
+
+# Secretos de Streamlit
+.streamlit/secrets.toml
+
+# ==========================================
+# DATOS Y EVIDENCIAS
+# ==========================================
+
+# No subir capturas todavía
+04_capturas/
+
+# ==========================================
+# ARCHIVOS GENERADOS
+# ==========================================
+
+# Resultados de la carga y procesamiento
+02_base_de_datos/salida/
+
+# Archivos CSV generados: se excluyen por defecto
+*.csv
+
+# Excepción: conservar el CSV original del proyecto
+!00_datos_originales/
+!00_datos_originales/*.csv
+!00_datos_originales/**/*.csv
+
+# ==========================================
+# ARCHIVOS TEMPORALES DE PYTHON
+# ==========================================
+__pycache__/
+*.py[cod]
+*.bak
+*.log
+
+# ==========================================
+# VERSIONES ANTIGUAS
+# ==========================================
+01_eda/app_anterior.py
+
+# ==========================================
+# ENTORNOS Y CONFIGURACIÓN LOCAL
+# ==========================================
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+
+# ==========================================
+# SISTEMA OPERATIVO
+# ==========================================
+.DS_Store
+Thumbs.db
+desktop.ini
