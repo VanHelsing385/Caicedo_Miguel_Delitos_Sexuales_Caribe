@@ -15,6 +15,7 @@
 
 # No subir capturas todavía
 04_capturas/
+bitacora_decisiones.md
 
 # ==========================================
 # ARCHIVOS GENERADOS
@@ -59,3 +60,4 @@ env/
 .DS_Store
 Thumbs.db
 desktop.ini
+
