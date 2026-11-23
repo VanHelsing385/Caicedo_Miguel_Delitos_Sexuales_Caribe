@@ -6,7 +6,6 @@ import pandas as pd
 # CONFIGURACIÓN
 # =====================================================
 
-# CAMBIA el nombre por el de tu CSV original.
 CSV_PATH = Path("00_datos_originales/delitos_sexuales_nacional.csv")
 
 # Códigos DANE de los departamentos del Caribe.

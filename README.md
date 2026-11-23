@@ -1,185 +1,242 @@
-# Análisis de delitos sexuales en la región Caribe colombiana
+# Proyecto de Minería de Datos: Delitos Sexuales en la Región Caribe
 
-Proyecto académico de Minería de Datos orientado al almacenamiento, limpieza, análisis exploratorio y visualización de registros de delitos sexuales correspondientes a los departamentos de la región Caribe de Colombia.
+**Asignatura:** Minería de Datos  
+**Autores:** Miguel Caicedo - Jordy Cardenas
 
 ## 1. Descripción del proyecto
 
-El proyecto desarrolla un proceso de análisis de datos que comprende:
+Este proyecto desarrolla un proceso de análisis exploratorio y almacenamiento de datos relacionados con los delitos sexuales reportados por la Policía Nacional de Colombia, con énfasis en los ocho departamentos de la región Caribe.
 
-- Exploración y caracterización del conjunto de datos original.
-- Limpieza y transformación de los registros, conservando la información original.
-- Identificación y análisis de valores faltantes, duplicados y atípicos.
-- Análisis descriptivo, distribuciones y relaciones entre variables.
-- Modelado y almacenamiento de los datos en PostgreSQL.
-- Visualización interactiva mediante Python, Streamlit y Power BI.
+El proceso comprende la lectura y exploración del conjunto de datos original, la limpieza y transformación de la información, su almacenamiento en PostgreSQL mediante Neon y la preparación de los datos para su análisis y visualización en Power BI.
 
-El análisis regional comprende ocho departamentos del Caribe colombiano.
+La aplicación de análisis exploratorio se desarrolla en Python y Streamlit.
 
-## 2. Tecnologías utilizadas
+## 2. Flujo de trabajo
 
-| Tecnología | Aplicación |
-|---|---|
-| Python 3.14.4 | Procesamiento y análisis de datos |
-| Pandas | Manipulación de datos |
-| NumPy | Operaciones numéricas |
-| Streamlit | Aplicación interactiva de análisis exploratorio |
-| Plotly | Visualizaciones interactivas |
-| PostgreSQL | Almacenamiento de datos |
-| Neon | Servicio de PostgreSQL en la nube |
-| Psycopg 3 | Conexión desde Python con PostgreSQL |
-| Power BI | Elaboración de dashboards e informes |
+El proyecto se organiza en las siguientes fases:
 
-## 3. Estructura del proyecto
+1. **Carga de datos:** lectura y validación del archivo CSV original.
+2. **Análisis exploratorio:** identificación de valores faltantes, registros repetidos, estadísticas descriptivas, valores atípicos, distribuciones y relaciones.
+3. **Almacenamiento:** preparación y carga de los datos limpios en PostgreSQL Neon.
+4. **Visualización:** conexión de Power BI con la base de datos para construir el tablero interactivo.
+
+## 3. Tecnologías utilizadas
+
+- Python 3.14.4 (versión utilizada en las pruebas).
+- Pandas 3.1.1.
+- NumPy 2.5.4.
+- Streamlit 1.67.0.
+- Plotly 7.1.0.
+- PostgreSQL.
+- Neon.
+- Psycopg 3.3.8.
+- Python-dotenv 1.2.4.
+- Power BI Desktop.
+
+Las dependencias de Python se encuentran especificadas en `requirements.txt`.
+
+## 4. Estructura del proyecto
 
 ```text
 Caicedo_Miguel_Delitos_Sexuales_Caribe/
+│
+├── README.md
+├── requirements.txt
+│
+├── .streamlit/
+│   └── config.toml
 │
 ├── 00_datos_originales/
 │   └── delitos_sexuales_nacional.csv
 │
 ├── 01_eda/
 │   ├── app.py
-│   ├── datos.py
-│   ├── limpieza.py
 │   ├── contexto.py
+│   ├── datos.py
 │   ├── estilo.py
+│   ├── limpieza.py
 │   ├── verificar_carga.py
+│   │
 │   └── paginas/
+│       ├── inicio.py
+│       ├── p1_carga.py
+│       ├── p2_faltantes.py
+│       ├── p3_duplicados.py
+│       ├── p4_descriptivas.py
+│       ├── p5_atipicos.py
+│       └── p6_relaciones.py
 │
-├── 02_base_de_datos/
-│   ├── 01_crear_tablas.sql
-│   ├── 02_verificaciones.sql
-│   ├── guardar_limpios.py
-│   ├── verificar_modelo.py
-│   └── validar_codigos_dane.py
-│
-├── 03_powerbi/
-│
-├── 04_capturas/
-│
-├── 05_articulo/
-│
-├── .streamlit/
-│   └── config.toml
-│
-├── .gitignore
-├── bitacora_decisiones.md
-├── requirements.txt
-└── README.md
+└── 02_base_de_datos/
+    ├── 01_crear_tablas.sql
+    ├── 02_verificaciones.sql
+    ├── guardar_limpios.py
+    ├── validar_codigos_dane.py
+    ├── verificar_modelo.py
+    │
+    └── salida/
+        ├── delitos_limpios.csv
+        └── control.json
 ```
 
-Las carpetas de Power BI, evidencias y artículo se incorporarán conforme se completen esas fases del proyecto.
+**Nota:** La carpeta `salida/` se genera durante el proceso de preparación de los datos. El archivo `control.json` permite comprobar la correspondencia entre el CSV original, el CSV preparado y los archivos utilizados en la limpieza.
 
-## 4. Requisitos previos
+## 5. Requisitos previos
 
-Para ejecutar la aplicación se necesita:
+Para ejecutar el proyecto se necesita:
 
-- Python 3.14.4.
-- Git.
-- El archivo CSV original ubicado en `00_datos_originales/`.
-- Las dependencias especificadas en `requirements.txt`.
+- Python instalado.
+- Git (opcional, para clonar el repositorio).
+- Acceso a internet para instalar las dependencias y conectarse a Neon.
+- Una cuenta y una base de datos PostgreSQL en Neon para ejecutar el proceso de almacenamiento.
+- Power BI Desktop para abrir y utilizar el proyecto de visualización.
 
-## 5. Instalación y ejecución del análisis exploratorio
+## 6. Instalación
 
-### 5.1. Clonar el repositorio
+### 6.1. Obtener el proyecto
+
+Clonar el repositorio:
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/VanHelsing385/Caicedo_Miguel_Delitos_Sexuales_Caribe.git
+```
+
+Ingresar a la carpeta:
+
+```bash
 cd Caicedo_Miguel_Delitos_Sexuales_Caribe
 ```
 
-El repositorio es privado, por lo que se necesita tener acceso autorizado para clonarlo.
-
-### 5.2. Crear un entorno virtual
-
-```bash
-python -m venv .venv
-```
-
-### 5.3. Activar el entorno virtual
-
-En Linux:
-
-```bash
-source .venv/bin/activate
-```
+### 6.2. Crear un entorno virtual
 
 En Windows:
 
 ```bash
+python -m venv .venv
 .venv\Scripts\activate
 ```
 
-### 5.4. Instalar las dependencias
+En Linux:
 
 ```bash
-python -m pip install --upgrade pip
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 6.3. Instalar dependencias
+
+```bash
 python -m pip install -r requirements.txt
 ```
 
-### 5.5. Ejecutar Streamlit
+## 7. Ejecución del análisis exploratorio
 
-Desde la raíz del proyecto:
+Desde la carpeta raíz del proyecto, ejecutar:
 
 ```bash
 streamlit run 01_eda/app.py
 ```
 
-Streamlit iniciará la aplicación y mostrará la dirección local desde la cual se puede consultar el análisis exploratorio.
+La aplicación permite explorar:
 
-**Importante:** el archivo original debe conservar su ubicación y nombre dentro de `00_datos_originales/` para que la aplicación pueda localizarlo.
+- Carga y estructura de los datos.
+- Valores faltantes.
+- Registros duplicados.
+- Estadísticas descriptivas.
+- Valores atípicos.
+- Distribuciones y relaciones entre variables.
 
-## 6. Base de datos PostgreSQL
+La aplicación utiliza el archivo CSV original como fuente de información. El filtro de la región Caribe se realiza mediante los códigos DANE de los departamentos correspondientes.
 
-El proyecto incluye los scripts utilizados para crear, cargar y verificar el modelo relacional en PostgreSQL.
+Para ejecutar las verificaciones de carga:
 
-Los archivos principales son:
+```bash
+python 01_eda/verificar_carga.py
+```
 
-- `01_crear_tablas.sql`: definición de las tablas, relaciones y restricciones.
-- `02_verificaciones.sql`: consultas de comprobación de la estructura y los registros.
-- `guardar_limpios.py`: proceso de carga de los datos preparados.
-- `verificar_modelo.py`: comprobaciones del modelo y de los datos.
-- `validar_codigos_dane.py`: validaciones relacionadas con los códigos DANE.
+## 8. Almacenamiento en PostgreSQL Neon
 
-La base de datos implementada contiene siete tablas: departamentos, municipios, tipos de delito, géneros, grupos etarios, medios y delitos limpios.
+### 8.1. Configurar la conexión
 
-La carga original del proyecto se realizó utilizando PostgreSQL mediante Neon.
+El proyecto utiliza una variable de entorno llamada `DATABASE_URL` para establecer la conexión con PostgreSQL.
 
-### 6.1. Reproducción de la base de datos
+Se debe crear un archivo `.env` en la raíz del proyecto con el siguiente contenido:
 
-La ejecución de esta fase es independiente de la aplicación Streamlit.
+```env
+DATABASE_URL=postgresql://USUARIO:CONTRASEÑA@HOST/BASE_DE_DATOS?sslmode=require
+```
 
-Quien desee reproducirla debe disponer de una instancia propia de PostgreSQL y configurar sus credenciales localmente. No se deben utilizar ni compartir credenciales de otras personas.
+Se deben reemplazar los valores de ejemplo por los datos de conexión proporcionados por Neon.
 
-El script de carga utiliza la variable de entorno `DATABASE_URL`, leída desde un archivo `.env` ubicado en la raíz del proyecto.
+**Importante:** el archivo `.env` contiene credenciales y no debe compartirse, publicarse ni incluirse en el ZIP de entrega.
 
-No se deben publicar archivos `.env`, contraseñas ni cadenas de conexión.
+### 8.2. Crear las tablas
 
-**Advertencia:** antes de ejecutar los scripts de creación o carga, se recomienda utilizar una base de datos de prueba propia y revisar las instrucciones del código. No se debe ejecutar la carga sobre una base de datos ajena o de producción.
+El script de creación de la estructura se encuentra en:
 
-## 7. Bitácora de decisiones metodológicas
+```text
+02_base_de_datos/01_crear_tablas.sql
+```
 
-El archivo `bitacora_decisiones.md` documenta las decisiones tomadas durante el desarrollo del proyecto, incluyendo:
+También se dispone del archivo:
 
-- Características del conjunto de datos.
-- Criterios de limpieza y transformación.
-- Tratamiento de valores faltantes y registros duplicados.
-- Identificación y tratamiento de valores atípicos.
-- Justificación del modelo relacional.
-- Validaciones realizadas.
-- Limitaciones y decisiones metodológicas.
+```text
+02_base_de_datos/02_verificaciones.sql
+```
 
-Se recomienda consultar este documento antes de modificar los procesos de limpieza o las estructuras de almacenamiento, para conservar la trazabilidad y coherencia del análisis.
+Este contiene consultas para comprobar la estructura, integridad y contenido de la base de datos. Se ejecuta desde el editor SQL de Neon.
 
-## 8. Consideraciones sobre los datos
+### 8.3. Preparar y cargar los datos
 
-- Se conserva el conjunto de datos original.
-- No se eliminan registros del conjunto original.
-- Las decisiones de limpieza y transformación se documentan.
-- Los registros duplicados se identifican y se conservan.
-- Los valores faltantes y las categorías originales se tratan de acuerdo con los criterios documentados en la bitácora.
-- Los resultados deben interpretarse considerando las limitaciones del conjunto de datos y de las variables disponibles.
+Desde la raíz del proyecto:
 
-## 9. Autores y contexto académico
+```bash
+python 02_base_de_datos/guardar_limpios.py
+```
 
-Proyecto desarrollado en el marco de la asignatura **Minería de Datos**, como ejercicio académico de aplicación de técnicas de almacenamiento, análisis exploratorio y visualización de datos.
+El proceso comprende tres fases:
+
+1. **Preparar:** genera el archivo `delitos_limpios.csv` y el archivo de control `control.json`, cuando corresponde.
+2. **Cargar:** crea o verifica las tablas, valida los catálogos y carga los registros en PostgreSQL.
+3. **Verificar:** compara los registros almacenados con el archivo preparado.
+
+El script dispone de las siguientes opciones:
+
+```bash
+python 02_base_de_datos/guardar_limpios.py --help
+```
+
+- `--solo-preparar`: ejecuta únicamente la preparación de los datos.
+- `--solo-verificar`: ejecuta únicamente las verificaciones.
+- `--regenerar`: fuerza la regeneración del archivo preparado.
+- `--lote`: permite modificar el tamaño de los lotes de carga.
+- `--permitir-local`: permite utilizar una conexión local cuando corresponda.
+
+## 9. Pruebas y verificaciones
+
+El proyecto incorpora scripts para comprobar diferentes aspectos del proceso:
+
+| Archivo | Propósito |
+|---|---|
+| `01_eda/verificar_carga.py` | Comprueba la lectura y las cifras de control del conjunto original. |
+| `02_base_de_datos/validar_codigos_dane.py` | Valida los códigos DANE utilizados en los datos. |
+| `02_base_de_datos/verificar_modelo.py` | Comprueba aspectos del modelo de datos. |
+| `02_base_de_datos/02_verificaciones.sql` | Ejecuta consultas de verificación en PostgreSQL. |
+
+La carga de los datos se verificó mediante la comparación de los registros del archivo preparado con los almacenados en PostgreSQL.
+
+## 10. Consideraciones metodológicas
+
+- El archivo CSV original se conserva sin modificaciones.
+- El análisis se concentra en los ocho departamentos de la región Caribe.
+- No se eliminan registros del conjunto analizado.
+- Los valores faltantes se identifican y se tratan mediante categorías explícitas cuando corresponde.
+- Los registros repetidos se identifican y marcan, pero no se eliminan.
+- Los valores atípicos se conservan y se analizan.
+- Las cifras representan registros reportados y no tasas de ocurrencia poblacional.
+- Los resultados deben interpretarse teniendo en cuenta las limitaciones de la fuente y los cambios en el registro de la información.
+
+## 11. Autores
+
+**Miguel Caicedo - Jordy Cardenas**
+
+Proyecto académico desarrollado para la asignatura Minería de Datos.
